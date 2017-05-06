@@ -5,13 +5,17 @@ class NoteController < ApplicationController
 
   def index
     @note = Note.where(user_id: @c_user)
+    # コンテンツモデル読み込みテスト
+    @note_contents = NoteContent.all
   end
 
   def show
+
   end
 
   def new
     @note = Note.new
+    render :action => "new"
   end
 
   def create

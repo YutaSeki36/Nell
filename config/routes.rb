@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'note/index'
-  get 'note/show'
+  get 'note/index/:id', to: 'note#show'
   get 'note/new'
   post 'note/create'
 

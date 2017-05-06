@@ -1,0 +1,2 @@
+class NoteContent < ApplicationRecord
+end
