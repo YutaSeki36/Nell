@@ -1,0 +1,9 @@
+<h1>Note#new</h1>
+<p>Find me in app/views/note/index.html.erb</p>
+
+<%= form_for @note ,:url => { :controller => :note, :action => :create } do |f| %>
+  ノートタイトル: <%= f.text_field :title %><br />
+  アイデア概要: <%= f.text_field :description %><br />
+  <%= f.hidden_field :user_id, value: @c_user %>
+  <%= f.submit %>
+<% end %>
