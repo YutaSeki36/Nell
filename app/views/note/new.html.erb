@@ -5,5 +5,8 @@
   ノートタイトル: <%= f.text_field :title %><br />
   アイデア概要: <%= f.text_field :description %><br />
   <%= f.hidden_field :user_id, value: @c_user %>
+    <%= fields_for(@note_contents) do |c| %>
+      アイデア内容: <%= c.text_field :contents %>
+    <% end %>
   <%= f.submit %>
 <% end %>

@@ -15,12 +15,13 @@ class NoteController < ApplicationController
 
   def new
     @note = Note.new
-    render :action => "new"
+    @note_contents = NoteContent.new
   end
 
   def create
      @note = Note.new(note_params)
-    if @note.save
+     @note_contents = NoteContent.new(note_contents_params)
+    if @note.save && @note_contents.save
       # 現在のアクションのindexにリダイレクトする
       redirect_to :action => "index"
     else
@@ -35,6 +36,10 @@ class NoteController < ApplicationController
    def note_params
      # permitしている要素しか読み込まない
      params.require(:note).permit(:title, :description, :user_id)
+   end
+   def note_contents_params
+     # permitしている要素しか読み込まない
+     params.require(:note_content).permit(:contents)
    end
 
    def set_currentuser_id

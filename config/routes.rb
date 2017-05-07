@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  get 'note/index'
+
+  devise_for :users
+
+  # rootにindexページを設定 
+  root 'note#index'
   get 'note/index/:id', to: 'note#show'
   get 'note/new'
   post 'note/create'
 
-  devise_for :users
-  root 'pages#index'
-  get 'pages/show'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
