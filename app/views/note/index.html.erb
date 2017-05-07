@@ -8,13 +8,6 @@
 <br>
 <% end %>
 
-<!-- 詳細ページのテスト -->
-<% @note_contents.each do |f| %>
-<%= f.contents %>
-</a>
-<br>
-<% end %>
-
 
 <p class="link_to">
 <%= link_to "新規作成", :controller => "note", :action => "new" %>

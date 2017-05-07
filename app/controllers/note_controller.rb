@@ -6,22 +6,24 @@ class NoteController < ApplicationController
   def index
     @note = Note.where(user_id: @c_user)
     # コンテンツモデル読み込みテスト
-    @note_contents = NoteContent.all
+    
   end
 
   def show
-
+    @note_contents = NoteContent.where(note_id: params[:id])
+    # @note_contents = NoteContent.find_by(note_id: params[:id])
   end
 
   def new
     @note = Note.new
-    @note_contents = NoteContent.new
+    # @note_contents = NoteContent.new
+    @note.note_contents.build
   end
 
   def create
      @note = Note.new(note_params)
-     @note_contents = NoteContent.new(note_contents_params)
-    if @note.save && @note_contents.save
+     # @note_contents = NoteContent.new(note_contents_params)
+    if @note.save # && @note_contents.save
       # 現在のアクションのindexにリダイレクトする
       redirect_to :action => "index"
     else
@@ -35,11 +37,11 @@ class NoteController < ApplicationController
 
    def note_params
      # permitしている要素しか読み込まない
-     params.require(:note).permit(:title, :description, :user_id)
+     params.require(:note).permit(:title, :description, :user_id, :id, note_contents_attributes: [:id, :contents, :version])
    end
    def note_contents_params
      # permitしている要素しか読み込まない
-     params.require(:note_content).permit(:contents)
+     params.require(:note_content).permit(:contents, :version)
    end
 
    def set_currentuser_id
